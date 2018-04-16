@@ -1,8 +1,14 @@
 package com.yanhuo.sign.controller;
 
+import com.yanhuo.sign.dal.mapper.UserMapper;
+import com.yanhuo.sign.dal.model.User;
+import com.yanhuo.sign.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * @author 烟火（yanhuo@maihaoche.com）
@@ -13,7 +19,31 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class UserControlelr {
 
+    @Autowired
+    private UserService userService;
+//
+//    /**
+//     * 用户登录
+//     * @param uName
+//     * @param uPwd
+//     * @return
+//     */
+//    @GetMapping(value = "/index")
+//    User login(@RequestParam String uName,
+//               @RequestParam String uPwd,
+//               HttpSession session,
+//               RedirectAttributes attributes) {
+//        return userService.login(uName,uPwd,session,attributes);
+//    }
 
+    /**
+     * 用户注册
+     * @param user
+     */
+    @RequestMapping(value = "/teacherSign",method = RequestMethod.POST)
+    public void register(User user) {
+        userService.register(user);
+    }
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
     public String index(){
