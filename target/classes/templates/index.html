@@ -12,8 +12,14 @@
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="../static/css/bootstrap.min.css"  th:href="@{/css/bootstrap.min.css}" />
 
-
-
+    <style type="text/css">
+        body {
+            width: 100%;
+            height: auto;
+            background: url("../static/img/11.jpg") no-repeat;
+            background-size: 100%;
+        }
+    </style>
 
 </head>
 
@@ -24,20 +30,23 @@
 
         <div class="col-md-4 col-md-offset-4">
 
-            <form action="" class="form-signin" method="get">
-                <h2 class="form-signin-heading">校园签到系统</h2>
-                <label for="userName" class="sr-only">UserName</label>
-                <input type="userName" id="userName" class="form-control" placeholder="用户名"  />
+            <form action="#" th:action="@{/teacherAdmin}" th:object="${user}" class="form-signin" method="post">
+                <h2 class="">校园签到系统</h2>
+<!--
+                <h3><span th:text="${session.user}?${session.user.getuName()}:'您未登录"></span></h3>
+-->
+                <label for="userName" class="sr-only">用户名</label>
+                <input type="userName" id="userName" class="form-control" placeholder="用户名" th:field="*{uName}"/>
                 <br/>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="密码" />
+                <label for="inputPassword" class="sr-only">密码</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="密码" th:filed="*{uPwd}"/>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"/> 记住我
+                        <input type="checkbox" value="记住我"/> 记住我
                     </label>
                 </div>
                 <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
-                <a class="btn btn-lg btn-primary btn-block" type="submit" href="teacherSign.html">教师注册</a>
+                <a class="btn btn-lg btn-primary btn-block" type="submit" href="teacher/teacherSign.html">注册</a>
 
             </form>
 
@@ -47,9 +56,6 @@
 
     </div>
 
-</div> <!-- /container -->
-
-
-
+</div>
 </body>
 </html>

@@ -16,4 +16,10 @@ public class StudentInfoController {
     public String teacherAdminStudentInfo(){
         return "teacherAdminStudentInfo";
     }
+
+
+    @RequestMapping(value = "/StudentSign",method = RequestMethod.GET)
+    public String StudentSign(){
+        return "StudentSign";
+    }
 }

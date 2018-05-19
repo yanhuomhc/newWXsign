@@ -17,6 +17,5 @@
         <mapper resource="mybatis-mapper/ext/StudentInfoExtMapper.xml"/>
         <mapper resource="mybatis-mapper/ext/TeacherSignRecordExtMapper.xml"/>
         <mapper resource="mybatis-mapper/ext/UserExtMapper.xml"/>
-
     </mappers>
 </configuration>

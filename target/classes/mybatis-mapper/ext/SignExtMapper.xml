@@ -34,4 +34,22 @@
         from sign
         where sign_num = #{signNum}
     </select>
+
+    <select id="selectSignDetailBysId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select sign_id, begin_sign_time, s_id, c_name, c_location, is_sign, sign_time, t_name,
+        t_id, sign_num, s_class
+        from sign
+        where s_id = #{sId}
+    </select>
+
+    <!--List:foreach中的collection属性类型是List,collection的值必须是：list，item的值随意，-->
+    <update id="updateSignStatus" parameterType="com.yanhuo.sign.dal.model.Sign" >
+        update sign
+        set is_sign = 1
+        where s_id in
+        <foreach collection="list" item="sId"  open="(" separator="," close=")">
+            #{sId}
+        </foreach>
+    </update>
+
 </mapper>

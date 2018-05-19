@@ -14,12 +14,14 @@ import java.util.List;
 public interface CourseService {
 
     /**
+     * 教师
      * 查询课程
      * @return
      */
     List<Course> selectAllCourse();
 
     /**
+     * 教师
      * 增加课程
      * @param course
      * @return

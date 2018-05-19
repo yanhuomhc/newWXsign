@@ -1,5 +1,9 @@
 package com.yanhuo.sign.dal.model;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 public class User implements Serializable {
@@ -9,6 +13,7 @@ public class User implements Serializable {
      *
      * @mbggenerated
      */
+
     private Long uId;
 
     /**
@@ -17,6 +22,8 @@ public class User implements Serializable {
      *
      * @mbggenerated
      */
+    @NotEmpty(message = "用户名不能为空")
+    @Size(min = 2,max = 8,message = "用户名长度必须介于2到20字之间")
     private String uName;
 
     /**
@@ -25,6 +32,7 @@ public class User implements Serializable {
      *
      * @mbggenerated
      */
+    @NotNull(message = "密码不能为空")
     private String uPwd;
 
     /**

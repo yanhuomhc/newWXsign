@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- Bootstrap core CSS -->
-    <link href="../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
 
 
 </head>
@@ -47,8 +47,8 @@
         <div class="col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="teacherAdmin.html">开始点到 <span class="sr-only">(current)</span></a></li>
-                <li><a href="teacherAdminSignInfo.html">签到明细查询</a></li>
-                <li><a href="teacherAdminSignDetail.html">签到结果汇总统计</a></li>
+                <li><a href="querySignDetail.html">签到明细查询</a></li>
+                <li><a href="SignResultAccount.html">签到结果汇总统计</a></li>
                 <li><a href="teacherAdminCourseInfo.html">课程管理</a></li>
                 <li><a href="teacherAdminStudentInfo.html">学生信息导入</a></li>
             </ul>
@@ -59,28 +59,17 @@
             <div class="row">
 
                 <form class="form-inline">
-                    模糊查询：<input class="form-control"/>
+                    Excel导入：<input type="file" class="form-control"/>
                     <button class="btn-danger">确定</button>
-                    选择课程：
-                    <select class="form-control">
-                        <option>英语</option>
-                        <option>数学</option>
-                        <option>德语</option>
-                    </select>
 
-                    选择班级：
+
+                    按班级班级：
                     <select class="form-control">
                         <option>142021</option>
                         <option>142011</option>
                         <option>142031</option>
                     </select>
 
-                    选择签到场次：
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                    </select>
 
                 </form>
 
@@ -251,9 +240,9 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../static/js/jquery.min.js"  th:src="@{/js/jquery.min.js}"></script>
+<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 
-<script src="../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 
 </body>
 </html>

@@ -37,5 +37,14 @@ spring:
          check-template-location: false
          mode: HTML5
          cache: false
+    mail:
+      host: smtp.qq.com
+      username: 1634447610@qq.com
+      password: wdaroevmsgpzghjf
+      properties:
+         mail:
+           smtp:
+             auth: true
+             starttls: true
 mybatis:
   config-location: classpath:mybatis-config.xml

@@ -12,9 +12,40 @@
         <result column="u_email" property="uEmail" jdbcType="VARCHAR" />
         <result column="s_no" property="sNo" jdbcType="VARCHAR" />
     </resultMap>
+
+    <select id="selectByName" resultType="com.yanhuo.sign.dal.model.User">
+        SELECT u_name
+        FROM USER
+        WHERE u_name = #{uName}
+    </select>
+
     <select id="login" resultType="com.yanhuo.sign.dal.model.User">
         SELECT u_name,u_pwd
         FROM USER
         WHERE u_name = #{uName} AND u_pwd = #{uPwd}
     </select>
+
+    <select id="selectAllTeachers" resultMap="BaseResultMap">
+        SELECT u_id,u_name,u_sex,u_institute,u_power,u_email
+        FROM USER
+    </select>
+
+    <select id="selectTeacher" resultMap="BaseResultMap" parameterType="java.lang.Long">
+        SELECT u_id, u_name, u_sex, u_institute, u_power, u_email
+        FROM USER
+        WHERE u_id = #{uId}
+    </select>
+
+    <update id="updateTeacherInfo" parameterType="com.yanhuo.sign.dal.model.User" >
+        UPDATE USER
+        SET
+        u_pwd = #{uPwd},
+        u_name = #{uName,jdbcType=VARCHAR},
+        u_sex = #{uSex,jdbcType=BIT},
+        u_institute = #{uInstitute,jdbcType=VARCHAR},
+        u_power = #{uPower,jdbcType=INTEGER},
+        u_email = #{uEmail,jdbcType=VARCHAR}
+        WHERE u_id = #{uId}
+    </update>
+
 </mapper>

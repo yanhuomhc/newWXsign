@@ -1,0 +1,92 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>首次扫码，请绑定</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+
+
+
+</head>
+
+<body>
+
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+
+            <form class="form-signin" role="form" action="StudentSign.html">
+
+                <h2 class="form-signin-heading">首次扫码请绑定</h2>
+
+                <label for="no" class="sr-only">账号</label>
+                <input  id="no" class="form-control" placeholder="学号" th:field="*{sNo}" /><br/>
+
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="密码" th:field="*{uPwd}"/>
+                <br/>
+
+                <!--<label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="邮箱" th:field="*{uSex}" />
+                <br/>
+-->
+                <input id="openId"  name="openId" value="xxxxx" type="hidden"  />
+
+                <select class="form-control" th:field="*{uSex}">
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+                <br/>
+
+                <select class="form-control"  placeholder="学院" th:field="*{uInstitute}">
+                    <option>信息工程学院</option>
+                    <option>环境科学学院</option>
+                    <option>食品科学学院</option>
+                    <option>电子工程学院</option>
+                    <option>马克思主义学院</option>
+                    <option>音乐学院</option>
+                    <option>美术学院</option>
+                    <option>体育学院</option>
+                    <option>教师教育学院</option>
+                    <option>幼儿示范学院</option>
+                    <option>商学院</option>
+                    <option>旅游与社会管理学院</option>
+                    <option>外国语学院</option>
+                    <option>新闻传播学院</option>
+                    <option>文学院</option>
+                </select>
+                <br/>
+
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="记住我"/> 记住我
+                    </label>
+                </div>
+
+                <button class="btn btn-lg btn-primary btn-block" type="submit">提交绑定</button>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+</body>
+</html>
