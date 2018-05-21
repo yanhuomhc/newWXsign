@@ -19,8 +19,17 @@
         WHERE u_name = #{uName}
     </select>
 
-    <select id="login" resultType="com.yanhuo.sign.dal.model.User">
-        SELECT u_name,u_pwd
+
+    <select id="selectByOpenId" resultMap="BaseResultMap">
+        SELECT *
+        FROM USER
+        WHERE open_id = #{openId}
+    </select>
+
+
+
+    <select id="login" resultMap="BaseResultMap">
+        SELECT *
         FROM USER
         WHERE u_name = #{uName} AND u_pwd = #{uPwd}
     </select>

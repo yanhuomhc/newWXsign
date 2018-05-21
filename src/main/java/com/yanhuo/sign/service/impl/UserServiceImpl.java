@@ -8,6 +8,7 @@ import com.yanhuo.sign.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
@@ -22,7 +23,7 @@ import java.util.List;
  */
 @Slf4j
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
@@ -32,23 +33,17 @@ public class UserServiceImpl implements UserService{
 
     @Override
     public User login(User user) {
-        if (null == user) {
+        if (ObjectUtils.isEmpty(user)) {
             log.error("参数错误");
         }
-        try {
-            user = userExtMapper.login(user.getuName(),user.getuPwd());
-            if (StringUtils.isEmpty(user.getuName()) || StringUtils.isEmpty(user.getuPwd())) {
-                log.error("对象不能为空");
-                return new User();
-            }
-        } catch (Exception e) {
-            log.error("登录失败");
+
+        user = userExtMapper.login(user.getuName(), user.getuPwd());
+
+        if (user == null) {
+            log.error("数据库没有该记录");
+            return null;
         }
 
-        if ((!user.getuName().equals(user.getuName()) || (!user.getuPwd().equals(user.getuPwd())))) {
-            log.error("用户名或密码错误");
-            return new User();
-        }
         return user;
     }
 
@@ -92,7 +87,7 @@ public class UserServiceImpl implements UserService{
         }
         User user = new User();
         try {
-             user = userExtMapper.selectTeacher(uId);
+            user = userExtMapper.selectTeacher(uId);
         } catch (Exception e) {
             log.error("查询教师信息失败");
         }

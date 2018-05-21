@@ -31,10 +31,18 @@
 			<version>5.1.34</version>
 		</dependency>
 
+
 		<!--模版引擎 Thymeleaf 依赖-->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+
+		<!--增加thymeleaf的非严格检查-->
+		<dependency>
+			<groupId>net.sourceforge.nekohtml</groupId>
+			<artifactId>nekohtml</artifactId>
+			<version>1.9.22</version>
 		</dependency>
 
 		<!--Web 依赖-->
@@ -42,6 +50,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!--需要用到发邮件-->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+			<version>4.3.2.RELEASE</version>
+		</dependency>
+
 
 		<!--Mybatis 依赖-->
 		<dependency>
@@ -89,10 +104,12 @@
 			<artifactId>core</artifactId>
 			<version>3.3.0</version>
 		</dependency>
+		<!--java邮件发送-->
+		<!-- https://mvnrepository.com/artifact/javax.mail/mail -->
 		<dependency>
-			<groupId>com.google.zxing</groupId>
-			<artifactId>javase</artifactId>
-			<version>3.3.0</version>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
 		</dependency>
 
 		<!--jxl依赖 用于读取Excel文件-->
@@ -108,6 +125,15 @@
 			<!--<artifactId>mail</artifactId>-->
 			<!--<version>1.4</version>-->
 		<!--</dependency>-->
+
+        <!--序列化工具-->
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+
+        </dependency>
+
+
 
 	</dependencies>
 

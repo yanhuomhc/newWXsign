@@ -88,7 +88,7 @@ public class SignServiceImplTest {
         signs.add(sign.getsId());
         sign.setsId(14550512L);
         signs.add(sign.getsId());
-        log.info("签到成功："+signExtMapper.updateSignStatus(signs));
+        //log.info("签到成功："+signExtMapper.updateSignStatus(signs));
         //使用断言
         assertEquals(14550535L,14550535L);
         assertEquals(14550510L,14550510L);
