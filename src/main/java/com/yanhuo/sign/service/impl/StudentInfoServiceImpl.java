@@ -1,9 +1,7 @@
 package com.yanhuo.sign.service.impl;
 
-import com.sun.xml.internal.org.jvnet.mimepull.MIMEMessage;
 import com.yanhuo.sign.service.StudentInfoService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
@@ -20,6 +18,7 @@ public class StudentInfoServiceImpl implements StudentInfoService{
     @Override
     public void sendAttachmentsMail(String to, String subject, String content, String filePath) {
        // MIMEMessage message =
+
     }
 
 
