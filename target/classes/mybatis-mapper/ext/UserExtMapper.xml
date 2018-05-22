@@ -19,8 +19,7 @@
         WHERE u_name = #{uName}
     </select>
 
-    <select id="login" resultMap="BaseResultMap">
-        SELECT  *
+    <select id="login" resultMap="BaseResultMap"></select>
 
     <select id="selectByOpenId" resultMap="BaseResultMap">
         SELECT *
