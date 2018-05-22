@@ -119,12 +119,7 @@
 			<version>2.6.10</version>
 		</dependency>
 
-		<!--JavaMail依赖-->
-		<dependency>
-			<groupId>javax.mail</groupId>
-			<artifactId>mail</artifactId>
-			<version>1.4</version>
-		</dependency>
+
 
         <!--序列化工具-->
         <dependency>

@@ -42,7 +42,9 @@ public class WeixinController {
     public String auth(@RequestParam("code") String code, @RequestParam("state") String state) {
         log.info("进入auth方法");
         log.info("code={}", code);
-        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?appid=wxcbf93ad8adfe0f7c&secret=eba0c79287b7c0337e9e31b095a776c3&code=" + code + "&grant_type=authorization_code";
+        String url = "https://api.weixin.qq.com/sns/oauth2/access_token?" +
+                     "appid=wxcbf93ad8adfe0f7c&secret=eba0c79287b7c0337e9e31b095a776c3&code="
+                   + code + "&grant_type=authorization_code";
 
         RestTemplate restTemplate = new RestTemplate();
         String response = restTemplate.getForObject(url, String.class);
@@ -62,28 +64,24 @@ public class WeixinController {
 
         Long State = Long.valueOf(strings[0]);
         if (now - State > 3) {
-            return "redirect:/weixin/SignError"; //返回到错误提示页面
+            //返回到错误提示页面
+            return "redirect:/weixin/SignError";
 
         } else {
 
             String SopenId = openId.getOpenid();
             User user = userExtMapper.selectByOpenId(SopenId);
             if (user == null) {
-//重定向到绑定身份的界面
+                //重定向到绑定身份的界面
                 return "redirect:/weixin/Bind?openId=" + SopenId;
-
-
             } else {
                 StudentInfo studentInfo = studentInfoExtMapper.selectBySno(user.getsNo());
                 TeacherSignRecord teacherSignRecord = teacherSignRecordExtMapper.selectBytId(tId);
+                //更新签到状态
                 signExtMapper.updateSignStatus(studentInfo.getsId().longValue(), teacherSignRecord.getSignRecordNo(), tId, new Date());
-
             }
-
-
-            return "redirect:/weixin/Success"; //成功提示页面
-
-            //更新状态
+            //成功提示页面
+            return "redirect:/weixin/Success";
 
         }
     }
@@ -98,16 +96,12 @@ public class WeixinController {
     }
 
     /**
-     * 错误页面
+     * 签到成功页面
      */
     @GetMapping("/Success")
     public String Success() {
         return "student/Success";
     }
-
-
-
-
 
 
     /**
@@ -120,17 +114,11 @@ public class WeixinController {
         return "student/StudentSign";
     }
 
-
     @PostMapping("/doBind")
     public String doBind(User user) {
-
         user.setuPower(3);
         userExtMapper.insert(user);
-
-
-
         System.out.println(user.toString());
-
         return "student/newBind";
 
     }

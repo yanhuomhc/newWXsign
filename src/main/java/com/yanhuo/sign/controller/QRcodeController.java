@@ -55,22 +55,21 @@ public class QRcodeController {
         return image;
     }
 
-
-
-
     @PostMapping(value = "toQRcode")
     public String toQRcode(@RequestParam("location") String location, @RequestParam("course") Integer  course, @RequestParam("Sclass") Long Sclass, HttpSession session){
 
         User user=(User) session.getAttribute("user");
 
         if (ObjectUtils.isEmpty(user)){
-            return  null;//请登录
+            //请登录
+            return  null;
         }
 
        List<StudentInfo> studentInfoList= studentInfoExtMapper.selectAllbyClass(Sclass);
 
        if (CollectionUtils.isEmpty(studentInfoList)){
-           return null;//没有学生
+           //没有该学生
+           return null;
        }
 
        //获取课程名
@@ -79,7 +78,7 @@ public class QRcodeController {
        //获取当前签到次数 并更新签到次数记录
 
         TeacherSignRecord teacherSignRecord=teacherSignRecordExtMapper.selectBytId(user.getuId().intValue());
-        Integer NowNum=0;
+        Integer NowNum = 0;
         if (teacherSignRecord==null){
             NowNum=1;
             TeacherSignRecord record=new TeacherSignRecord();
@@ -91,8 +90,6 @@ public class QRcodeController {
             teacherSignRecord.setSignRecordNo(NowNum);
             teacherSignRecordExtMapper.updateByPrimaryKey(teacherSignRecord);
         }
-
-
 
         for (StudentInfo studentInfo : studentInfoList) {
             Sign sign=new Sign();
@@ -111,9 +108,6 @@ public class QRcodeController {
             signExtMapper.insert(sign);
         }
 
-
-
-
         return "redirect:QRcodePage";
     }
 
@@ -122,11 +116,6 @@ public class QRcodeController {
 
         return "teacher/QRcode";
     }
-
-
-
-
-
 
     @GetMapping(value = "QRCode")
     public void QRCode(HttpServletResponse response,HttpSession session) throws IOException {
@@ -138,11 +127,17 @@ public class QRcodeController {
 
         String Token=date.toString()+"|"+teacher.getuId();
 
-        String text="https://open.weixin.qq.com/connect/oauth2/authorize?appid=wxcbf93ad8adfe0f7c&redirect_uri=http://yanhuo.s1.natapp.cc/weixin/auth&response_type=code&scope=snsapi_base&state="+Token +"#wechat_redirect";
-        int width = 600;    //二维码图片的宽
-        int height = 600;   //二维码图片的高
-        String format = "png";  //二维码图片的格式
-
+        String text="https://open.weixin.qq.com/connect/oauth2/authorize?" +
+                    "appid=wxcbf93ad8adfe0f7c&" +
+                    "redirect_uri=http://yanhuo.s1.natapp.cc/weixin/auth&" +
+                    "response_type=code&" +
+                    "scope=snsapi_base&state="+Token +"#wechat_redirect";
+        //二维码图片的宽
+        int width = 600;
+        //二维码图片的高
+        int height = 600;
+        //二维码图片的格式
+        String format = "png";
 
         response.setContentType("application/octet-stream");
 
@@ -157,14 +152,8 @@ public class QRcodeController {
             ImageIO.write(image, format, out);
             out.flush();
             out.close();
-
         }catch (Exception e){
-
+            e.printStackTrace();
         }
-
-
-
     }
-
-
 }

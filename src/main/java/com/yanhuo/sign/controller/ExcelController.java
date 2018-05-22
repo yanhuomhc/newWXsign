@@ -31,12 +31,11 @@ public class ExcelController {
     public ExcelController() {
     }
 
-
     @RequestMapping("toExcel")
     public String toExcel() {
-        return "admin/Excel";
-    }
 
+        return "teacher/teacherAdminStudentInfo";
+    }
 
     //上传excel
 
@@ -72,7 +71,6 @@ public class ExcelController {
                     list.add(str);
                 }
 
-
                 for (int i = 0; i < list.size(); i++) {
                     String[] str = (String[]) list.get(i);
                     for (int j = 0; j < str.length; j++) {
@@ -81,7 +79,6 @@ public class ExcelController {
                     }
 
                     if (i > 0) {
-
                         StudentInfo studentInfo = new StudentInfo();
                         studentInfo.setsClass(Long.valueOf(str[3]));
                         studentInfo.setsName(str[1]);
@@ -94,27 +91,24 @@ public class ExcelController {
 
                         studentInfoExtMapper.insert(studentInfo);
 
-
                     }
-
-
-                    System.out.println(); //所有属性取完  就是换行
+                    //所有属性取完  就是换行
+                    System.out.println();
                 }
-
 
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
-                return "上传失败," + e.getMessage();
+                return "upLoad false," + e.getMessage();
             } catch (IOException e) {
                 e.printStackTrace();
-                return "上传失败," + e.getMessage();
+                return "upLoad false," + e.getMessage();
             } catch (BiffException e) {
-                return "上传失败," + e.getMessage();
+                return "upLoad false," + e.getMessage();
             }
 
-            return "上传成功";
+            return "upLoad success";
         } else {
-            return "上传失败，因为文件是空的.";
+            return "upLoad false,cause of the file has nothing.";
         }
 
 

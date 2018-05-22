@@ -23,8 +23,16 @@ public class UserControlelr {
     @Autowired
     private UserService userService;
 
+
+    @RequestMapping("toLogin")
+    public String toLogin() {
+        return "/index";
+    }
+
     /**
      * 登录
+     * @param uName
+     * @param uPwd
      * @param model
      * @param session
      * @return
@@ -54,17 +62,25 @@ public class UserControlelr {
     @GetMapping(value = "/loginOut")
     public String loginOut(HttpSession session) {
         session.removeAttribute("user");
-        return "index";
+        return "/index";
+    }
+
+
+    @RequestMapping("toregister")
+    public String toRegister() {
+        return "teacher/teacherRegister";
     }
 
     /**
      * 注册
      * @param user
+     * @param model
+     * @return
      */
-    @RequestMapping(value = "/teacherSign",method = RequestMethod.POST)
+    @PostMapping(value = "/teacherRegister")
     public String register(User user,Model model) {
         userService.register(user);
-        return "teacherSign";
+        return "teacher/teacherRegister";
     }
 
     @RequestMapping(value = "/index",method = RequestMethod.GET)
