@@ -1,7 +1,6 @@
 package com.yanhuo.sign.dal.mapper.ext;
 
 
-import com.yanhuo.sign.dal.DTO.TeacherDTO;
 import com.yanhuo.sign.dal.mapper.UserMapper;
 import com.yanhuo.sign.dal.model.User;
 import org.apache.ibatis.annotations.Mapper;
@@ -11,6 +10,11 @@ import java.util.List;
 
 @Mapper
 public interface UserExtMapper extends UserMapper{
+
+    /**
+     * 根据openid查询学生信息
+     */
+    User selectByOpenId(String openId);
 
     /**
      * 根据用户名查询用户

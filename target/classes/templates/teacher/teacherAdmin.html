@@ -60,23 +60,22 @@
 
                <div class="row">
 
-                    <form class="form-inline">
-                        填入上课地点：<input class="form-control"/>
+                    <form class="form-inline" action="/toQRcode" method="post">
+                        填入上课地点：<input  name="location" class="form-control"/>
                        选择课程：
-                        <select class="form-control">
-                            <option>英语</option>
-                            <option>数学</option>
-                            <option>德语</option>
+                        <select class="form-control" name="course">
+                            <option value="1">英语</option>
+                            <option value="2">数学</option>
+                            <option value="3">德语</option>
                         </select>
 
-                        添加班级：
-                        <select class="form-control">
-                            <option>142021</option>
-                            <option>142011</option>
-                            <option>142031</option>
-                        </select>
 
                         <button class="btn-info">确定</button>
+=======
+                        输入班级：<input  name="Sclass" class="form-control"/>
+
+                     <button type="submit" class="btn btn-info">开始点到</button>
+>>>>>>> 3d1b95cce1b7eec20e773f35b13be95bcd2c0178:target/classes/templates/teacher/teacherAdmin.html
 
                     </form>
 
@@ -85,9 +84,13 @@
                </div>
 
 
+<<<<<<< HEAD:target/classes/templates/teacher/teacherAdmin.html
             <div class="row">
                 <img src="../../static/img/11.jpg"/>
             </div>
+=======
+
+>>>>>>> 3d1b95cce1b7eec20e773f35b13be95bcd2c0178:target/classes/templates/teacher/teacherAdmin.html
 
 
         </div>

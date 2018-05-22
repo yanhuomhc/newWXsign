@@ -5,7 +5,6 @@ import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 import com.sun.rowset.internal.Row;
@@ -67,12 +66,12 @@ public class SignServiceImpl implements SignService{
         } catch (WriterException e) {
             e.printStackTrace();
         }
-        try {
-            Path file = new File("/Users/user19/Downloads/new.png").toPath();
-            MatrixToImageWriter.writeToPath(bitMatrix,format,file);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            Path file = new File("/Users/user19/Downloads/new.png").toPath();
+//          //  MatrixToImageWriter.writeToPath(bitMatrix,format,file);
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 

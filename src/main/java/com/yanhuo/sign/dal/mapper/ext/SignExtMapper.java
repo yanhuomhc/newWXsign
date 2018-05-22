@@ -3,7 +3,9 @@ package com.yanhuo.sign.dal.mapper.ext;
 import com.yanhuo.sign.dal.mapper.SignMapper;
 import com.yanhuo.sign.dal.model.Sign;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -47,7 +49,7 @@ public interface SignExtMapper extends SignMapper {
      * @param sId
      * @return
      */
-    int updateSignStatus(List<Long> sId);
+    int updateSignStatus(@Param("sId") Long sId, @Param("no") Integer no, @Param("tId") Integer tId, @Param("signTime") Date signTime);
 
 
 

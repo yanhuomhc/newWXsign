@@ -25,13 +25,17 @@ public class UserControlelr {
 
     /**
      * 登录
-     * @param user
      * @param model
      * @param session
      * @return
      */
     @PostMapping(value = "/teacherAdmin")
-    public String login(User user,Model model,HttpSession session,@RequestParam(value = "rememberMe",required = false) String rememberMe) {
+    public String login(@RequestParam("uName") String uName,@RequestParam("uPwd") String uPwd,Model model,HttpSession session) {
+
+        User user=new User();
+        user.setuName(uName);
+        user.setuPwd(uPwd);
+
         User userLogin = userService.login(user);
         if (null == userLogin) {
             log.error("系统异常");
@@ -39,7 +43,7 @@ public class UserControlelr {
             return "index";
         }
         session.setAttribute("user",userLogin);
-        return "teacherAdmin";
+        return "teacher/teacherAdmin";
     }
 
     /**

@@ -43,13 +43,11 @@
     </select>
 
     <!--List:foreach中的collection属性类型是List,collection的值必须是：list，item的值随意，-->
-    <update id="updateSignStatus" parameterType="com.yanhuo.sign.dal.model.Sign" >
+    <update id="updateSignStatus" >
         update sign
-        set is_sign = 1
-        where s_id in
-        <foreach collection="list" item="sId"  open="(" separator="," close=")">
-            #{sId}
-        </foreach>
+        set is_sign = 1,sign_time=#{signTime}
+        where s_id =#{sId}  and  sign_num=#{no} and  t_id=#{tId}
+
     </update>
 
 </mapper>
