@@ -63,7 +63,7 @@ public class WeixinController {
 
 
         Long State = Long.valueOf(strings[0]);
-        if (now - State > 3) {
+        if (now - State > 5) {
             //返回到错误提示页面
             return "redirect:/weixin/SignError";
 

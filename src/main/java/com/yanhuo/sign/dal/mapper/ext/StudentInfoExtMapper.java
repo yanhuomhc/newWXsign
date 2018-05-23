@@ -10,6 +10,7 @@ import java.util.List;
 public interface StudentInfoExtMapper extends StudentInfoMapper {
 
     List<StudentInfo> selectAllbyClass(Long Sclass);
+
     StudentInfo selectBySno(String sno);
 
 

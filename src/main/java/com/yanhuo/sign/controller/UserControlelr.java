@@ -66,7 +66,7 @@ public class UserControlelr {
     }
 
 
-    @RequestMapping("toregister")
+    @RequestMapping("toRegister")
     public String toRegister() {
         return "teacher/teacherRegister";
     }
