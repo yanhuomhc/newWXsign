@@ -76,7 +76,6 @@ public class QRcodeController {
       Course courseName=courseExtMapper.selectByPrimaryKey(course.longValue());
 
        //获取当前签到次数 并更新签到次数记录
-
         TeacherSignRecord teacherSignRecord=teacherSignRecordExtMapper.selectBytId(user.getuId().intValue());
         Integer NowNum = 0;
         if (teacherSignRecord==null){

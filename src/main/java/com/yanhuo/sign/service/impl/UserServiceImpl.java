@@ -36,14 +36,12 @@ public class UserServiceImpl implements UserService {
         if (ObjectUtils.isEmpty(user)) {
             log.error("参数错误");
         }
-
         user = userExtMapper.login(user.getuName(), user.getuPwd());
 
         if (user == null) {
             log.error("数据库没有该记录");
             return null;
         }
-
         return user;
     }
 

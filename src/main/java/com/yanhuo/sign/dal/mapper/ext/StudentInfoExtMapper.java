@@ -9,6 +9,11 @@ import java.util.List;
 @Mapper
 public interface StudentInfoExtMapper extends StudentInfoMapper {
 
+    /**
+     * 根据班级查询所有学生
+     * @param Sclass
+     * @return
+     */
     List<StudentInfo> selectAllbyClass(Long Sclass);
 
     StudentInfo selectBySno(String sno);

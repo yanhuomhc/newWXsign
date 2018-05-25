@@ -33,12 +33,10 @@ public class ExcelController {
 
     @RequestMapping("toExcel")
     public String toExcel() {
-
         return "teacher/teacherAdminStudentInfo";
     }
 
     //上传excel
-
     /**
      * 单个文件
      *
