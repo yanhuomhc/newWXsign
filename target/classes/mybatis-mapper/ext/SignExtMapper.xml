@@ -3,12 +3,12 @@
 <mapper namespace="com.yanhuo.sign.dal.mapper.ext.SignExtMapper" >
     <resultMap id="BaseResultMap" type="com.yanhuo.sign.dal.model.Sign">
         <id column="sign_id" jdbcType="BIGINT" property="signId" />
-        <result column="begin_sign_time" jdbcType="DATE" property="beginSignTime" />
+        <result column="begin_sign_time" jdbcType="TIMESTAMP" property="beginSignTime" />
         <result column="s_id" jdbcType="BIGINT" property="sId" />
         <result column="c_name" jdbcType="VARCHAR" property="cName" />
         <result column="c_location" jdbcType="VARCHAR" property="cLocation" />
         <result column="is_sign" jdbcType="BIT" property="isSign" />
-        <result column="sign_time" jdbcType="DATE" property="signTime" />
+        <result column="sign_time" jdbcType="TIMESTAMP" property="signTime" />
         <result column="t_name" jdbcType="VARCHAR" property="tName" />
         <result column="t_id" jdbcType="INTEGER" property="tId" />
         <result column="sign_num" jdbcType="INTEGER" property="signNum" />
@@ -28,11 +28,11 @@
         where s_class = #{sClass}
     </select>
 
-    <select id="selectCourseBysignNum" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    <select id="selectCourseBysignNum"  resultMap="BaseResultMap">
         select sign_id, begin_sign_time, s_id, c_name, c_location, is_sign, sign_time, t_name,
         t_id, sign_num, s_class
         from sign
-        where sign_num = #{signNum}
+        where sign_num = #{signNum} and t_id=#{tid}
     </select>
 
     <select id="selectSignDetailBysId" parameterType="java.lang.Long" resultMap="BaseResultMap">
@@ -42,6 +42,13 @@
         where s_id = #{sId}
     </select>
 
+    <select id="selectSignDetailBytId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select sign_id, begin_sign_time, s_id, c_name, c_location, is_sign, sign_time, t_name,
+        t_id, sign_num, s_class
+        from sign
+        where t_id = #{tId}
+    </select>
+
     <!--List:foreach中的collection属性类型是List,collection的值必须是：list，item的值随意，-->
     <update id="updateSignStatus" >
         update sign
@@ -49,5 +56,41 @@
         where s_id =#{sId}  and  sign_num=#{no} and  t_id=#{tId}
 
     </update>
+
+
+    <select id="selectSignDetailBytCondition" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select sign_id, begin_sign_time, s_id, c_name, c_location, is_sign, sign_time, t_name,
+        t_id, sign_num, s_class
+        from sign
+        where t_id = #{tId}
+        <if test="course!=null">
+            and c_name =#{course}
+        </if>
+        <if test="sClass!=null">
+            and s_class=#{sClass}
+        </if>
+        <if test="SignNo!=null">
+            and sign_num=#{SignNo}
+        </if>
+
+        limit #{currentPage},#{pageSize}
+
+    </select>
+
+
+    <select id="selectCountSignDetailBytCondition" resultType="Integer">
+        select count(sign_id)
+        from sign
+       where t_id = #{tId}
+        <if test="course!=null">
+            and c_name =#{course}
+        </if>
+        <if test="sClass!=null">
+            and s_class=#{sClass}
+        </if>
+        <if test="SignNo!=null">
+            and sign_num=#{SignNo}
+        </if>
+    </select>
 
 </mapper>

@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN" xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+
+    <title>欢迎注册</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+
+
+
+</head>
+
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="#">签到系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">注销</a></li>
+            </ul>
+            <form class="navbar-form navbar-right">
+                <input type="text" class="form-control" placeholder="Search..." />
+            </form>
+        </div>
+    </div>
+</nav>
+
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+
+        <div class="col-md-4 col-md-offset-4">
+
+            <form  th:action="@{/teacherRegister}" class="form-signin" method="post">
+
+                <h2 class="form-signin-heading">注册</h2>
+
+                <label for="no" class="sr-only">账号</label>
+                <input  id="no" class="form-control" placeholder="账号" name="uName"/><br/>
+
+
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" id="inputPassword" class="form-control" placeholder="密码" name="uPwd" />
+                <br/>
+
+                <label for="inputEmail" class="sr-only">Email address</label>
+                <input type="email" id="inputEmail" class="form-control" placeholder="邮箱" name="uEmail"/>
+                <br/>
+
+
+
+                <select class="form-control" name="uSex">
+                    <option value="1">男</option>
+                    <option value="0">女</option>
+                </select>
+                <br/>
+
+
+                <select class="form-control"  placeholder="学院"  name="uInstitute">
+                    <option value="信息工程学院">信息工程学院</option>
+                    <option value="环境科学学院">环境科学学院</option>
+                    <option value="食品科学学院">食品科学学院</option>
+                    <option value="电子工程学院">电子工程学院</option>
+                    <option value="马克思主义学院">马克思主义学院</option>
+                    <option value="音乐学院">音乐学院</option>
+                    <option value="美术学院">美术学院</option>
+                    <option value="体育学院">体育学院</option>
+                    <option value="教师教育学院">教师教育学院</option>
+                    <option value="幼儿示范学院">幼儿示范学院</option>
+                    <option value="商学院">商学院</option>
+                    <option value="旅游与社会管理学院">旅游与社会管理学院</option>
+                    <option value="外国语学院">外国语学院</option>
+                    <option value="新闻传播学院">新闻传播学院</option>
+                    <option value="文学院">文学院</option>
+                </select>
+                <br/>
+
+
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" value="remember-me"/> 记住我
+                    </label>
+                </div>
+                <center> <button class="btn btn-lg btn-primary btn-block" type="submit">注册</button></center>
+                <p class="text-muted text-center"><big>已经有账户？?</big></p>
+                <a class="btn btn-lg btn-primary btn-block" href="/toLogin">登录</a>
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
+
+<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>

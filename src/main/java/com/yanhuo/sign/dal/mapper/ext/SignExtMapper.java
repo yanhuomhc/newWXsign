@@ -34,7 +34,7 @@ public interface SignExtMapper extends SignMapper {
      * @param signNum
      * @return
      */
-    List<Sign> selectCourseBysignNum(int signNum);
+    List<Sign> selectCourseBysignNum(@Param("tid") Integer tid,@Param("signNum") Integer signNum);
 
     /**
      * 学生权限：
@@ -45,11 +45,44 @@ public interface SignExtMapper extends SignMapper {
     List<Sign> selectSignDetailBysId(Long sId);
 
     /**
+     * 老师权限：
+     * 通过老师Id查询签到明细
+     * @param tId
+     * @return
+     */
+    List<Sign>  selectSignDetailBytId(Long tId);
+
+
+    /**
      * 学生签到后，修改签到状态
      * @param sId
      * @return
      */
     int updateSignStatus(@Param("sId") Long sId, @Param("no") Integer no, @Param("tId") Integer tId, @Param("signTime") Date signTime);
+
+
+    /**
+     * 按条件查询签到记录
+     * @param currentPage
+     * @param pageSize
+     * @param tId
+     * @param course
+     * @param sClass
+     * @param SignNo
+     * @return
+     */
+    List<Sign> selectSignDetailBytCondition(@Param("currentPage") Integer currentPage, @Param("pageSize") Integer pageSize,@Param("tId") Long tId,@Param("course") String course,@Param("sClass") Long sClass,@Param("SignNo") Integer SignNo);
+
+    /**
+     * 按条件统计签到记录
+     * @param tId
+     * @param course
+     * @param sClass
+     * @param SignNo
+     * @return
+     */
+    Integer selectCountSignDetailBytCondition(@Param("tId") Long tId,@Param("course") String course,@Param("sClass") Long sClass,@Param("SignNo") Integer SignNo);
+
 
 
 

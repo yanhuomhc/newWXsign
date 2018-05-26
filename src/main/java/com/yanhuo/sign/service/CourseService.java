@@ -1,7 +1,6 @@
 package com.yanhuo.sign.service;
 
 import com.yanhuo.sign.dal.model.Course;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -18,7 +17,7 @@ public interface CourseService {
      * 查询课程
      * @return
      */
-    List<Course> selectAllCourse();
+    List<Course> selectAllCourse(Long tId);
 
     /**
      * 教师

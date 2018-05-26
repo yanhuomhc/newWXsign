@@ -2,11 +2,9 @@ package com.yanhuo.sign.service;
 
 import com.yanhuo.sign.dal.model.Sign;
 import com.yanhuo.sign.dal.model.StudentInfo;
-import org.springframework.web.multipart.MultipartFile;
+import com.yanhuo.sign.utils.PageResult;
 
-import java.io.File;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author 烟火（yanhuo@maihaoche.com）
@@ -40,7 +38,7 @@ public interface SignService {
      * @param signNum
      * @return
      */
-    List<Sign> selectSignDetailBysignNum(int signNum);
+    List<Sign> selectSignDetailBysignNum(Integer tId,Integer signNum);
 
     /**
      * 学生操作：
@@ -51,6 +49,15 @@ public interface SignService {
     List<Sign> selectSignDetailBysId(Long sId);
 
     /**
+     * 老师操作：
+     * 根据老师Id查询签到明细
+     * @param tId
+     * @return
+     */
+    List<Sign> selectSignDetailBytId(Long tId);
+
+
+    /**
      *实现Excel导入
      * @param xlsPath
      * @return
@@ -58,5 +65,13 @@ public interface SignService {
     List<StudentInfo> importExcel(String xlsPath);
 
 
+
+    /**
+     * 老师操作：
+     * 根据条件获取所有的签到记录 并且实现分页
+     * @param
+     * @return
+     */
+    PageResult<Sign> selectSignDetailBytCondition(Long tId,String course,Long sClass,Integer SignNo,Integer current);
 
 }

@@ -16,6 +16,7 @@ import org.springframework.util.ObjectUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.imageio.ImageIO;
 import javax.servlet.ServletOutputStream;
@@ -36,8 +37,6 @@ public class QRcodeController {
     private SignExtMapper signExtMapper;
 
     @Autowired
-    private CourseExtMapper courseExtMapper;
-    @Autowired
     private TeacherSignRecordExtMapper teacherSignRecordExtMapper;
 
     private static final int BLACK = 0xFF000000;
@@ -55,9 +54,11 @@ public class QRcodeController {
         return image;
     }
 
-    @PostMapping(value = "toQRcode")
-    public String toQRcode(@RequestParam("location") String location, @RequestParam("course") Integer  course, @RequestParam("Sclass") Long Sclass, HttpSession session){
 
+
+    @GetMapping("/addSignClass")
+    @ResponseBody
+    public Object addSignClass(@RequestParam("location") String location, @RequestParam("course") String  course, @RequestParam("Sclass") Long Sclass, HttpSession session){
         User user=(User) session.getAttribute("user");
 
         if (ObjectUtils.isEmpty(user)){
@@ -65,17 +66,16 @@ public class QRcodeController {
             return  null;
         }
 
-       List<StudentInfo> studentInfoList= studentInfoExtMapper.selectAllbyClass(Sclass);
 
-       if (CollectionUtils.isEmpty(studentInfoList)){
-           //没有该学生
-           return null;
-       }
+        List<StudentInfo> studentInfoList= studentInfoExtMapper.selectAllbyClass(Sclass);
 
-       //获取课程名
-      Course courseName=courseExtMapper.selectByPrimaryKey(course.longValue());
+        if (CollectionUtils.isEmpty(studentInfoList)){
+            //没有该学生
+            return null;
+        }
 
-       //获取当前签到次数 并更新签到次数记录
+
+        //获取当前签到次数
         TeacherSignRecord teacherSignRecord=teacherSignRecordExtMapper.selectBytId(user.getuId().intValue());
         Integer NowNum = 0;
         if (teacherSignRecord==null){
@@ -85,15 +85,14 @@ public class QRcodeController {
             record.settId(user.getuId().intValue());
             teacherSignRecordExtMapper.insert(record);
         }else {
-            NowNum=teacherSignRecord.getSignRecordNo()+1;
-            teacherSignRecord.setSignRecordNo(NowNum);
-            teacherSignRecordExtMapper.updateByPrimaryKey(teacherSignRecord);
+            NowNum=teacherSignRecord.getSignRecordNo();
         }
+
 
         for (StudentInfo studentInfo : studentInfoList) {
             Sign sign=new Sign();
             sign.setsId(studentInfo.getsId().longValue());
-            sign.setcName(courseName.getcName());
+            sign.setcName(course);
             sign.setsClass(Sclass);
             sign.setSignNum(NowNum);
             sign.setBeginSignTime(new Date());
@@ -106,6 +105,31 @@ public class QRcodeController {
 
             signExtMapper.insert(sign);
         }
+
+
+        return studentInfoList;
+
+
+    }
+
+
+
+    @PostMapping(value = "toQRcode")
+    public String toQRcode(HttpSession session){
+
+        User user=(User) session.getAttribute("user");
+
+        if (ObjectUtils.isEmpty(user)){
+            //请登录
+            return  null;
+        }
+
+
+        //更新签到记录
+        TeacherSignRecord teacherSignRecord=teacherSignRecordExtMapper.selectBytId(user.getuId().intValue());
+         int NowNum=teacherSignRecord.getSignRecordNo()+1;
+        teacherSignRecord.setSignRecordNo(NowNum);
+        teacherSignRecordExtMapper.updateByPrimaryKey(teacherSignRecord);
 
         return "redirect:QRcodePage";
     }

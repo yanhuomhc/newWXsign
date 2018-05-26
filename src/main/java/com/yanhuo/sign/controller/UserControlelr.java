@@ -51,8 +51,21 @@ public class UserControlelr {
             return "index";
         }
         session.setAttribute("user",userLogin);
-        return "teacher/teacherAdmin";
+        return "redirect:toTeacherAdmin";
     }
+
+
+    @GetMapping("/toTeacherAdmin")
+    public String toTeacherAdmin(HttpSession session){
+
+        User teacher=(User)session.getAttribute("user");
+        if (teacher.getuPower()==null||teacher.getuPower()!=2){
+            return "redirect:toLogin";
+        }
+
+        return  "teacher/teacherAdmin";
+    }
+
 
     /**
      * 登出

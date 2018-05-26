@@ -1,6 +1,7 @@
 package com.yanhuo.sign.service.impl;
 
 import com.yanhuo.sign.dal.mapper.CourseMapper;
+import com.yanhuo.sign.dal.mapper.ext.CourseExtMapper;
 import com.yanhuo.sign.dal.model.Course;
 import com.yanhuo.sign.service.CourseService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,14 +23,15 @@ import java.util.List;
 public class CourseServiceImpl implements CourseService{
 
     @Autowired
-    private CourseMapper courseMapper;
+    private CourseExtMapper courseMapper;
+
 
     @Override
-    public List<Course> selectAllCourse() {
+    public List<Course> selectAllCourse(Long tId) {
 
         List<Course> courses = new ArrayList<>();
         try {
-             courses = courseMapper.selectAll();
+             courses = courseMapper.selectAllBytId(tId);
         } catch (Exception e) {
             log.error("查询课程失败");
         }

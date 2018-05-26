@@ -57,14 +57,14 @@ public class SignServiceImplTest {
         log.info("签到明细："+signService.selectSignDetailBysClass(sign.getsClass()));
     }
 
-    /**
-     * 根据当前签到场次查询签到明细
-     */
-    @Test
-    public void selectSignDetailBysignNum() {
-        sign.setSignNum(2);
-        log.info("签到明细："+signService.selectSignDetailBysignNum(sign.getSignNum()));
-    }
+//    /**
+//     * 根据当前签到场次查询签到明细
+//     */
+//    @Test
+//    public void selectSignDetailBysignNum() {
+//        sign.setSignNum(2);
+//        log.info("签到明细："+signService.selectSignDetailBysignNum(sign.getSignNum()));
+//    }
 
     /**
      * 根据学生Id查询签到明细

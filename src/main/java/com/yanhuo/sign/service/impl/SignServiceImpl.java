@@ -13,6 +13,7 @@ import com.yanhuo.sign.dal.mapper.ext.SignExtMapper;
 import com.yanhuo.sign.dal.model.Sign;
 import com.yanhuo.sign.dal.model.StudentInfo;
 import com.yanhuo.sign.service.SignService;
+import com.yanhuo.sign.utils.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -104,15 +105,15 @@ public class SignServiceImpl implements SignService{
     }
 
     @Override
-    public List<Sign> selectSignDetailBysignNum(int signNum) {
+    public List<Sign> selectSignDetailBysignNum(Integer tid,Integer signNum) {
         if (StringUtils.isEmpty(signNum)) {
             return new ArrayList<>();
         }
         List<Sign> signs = new ArrayList<>();
         try {
-            signs = signExtMapper.selectCourseBysignNum(signNum);
+            signs = signExtMapper.selectCourseBysignNum(tid,signNum);
         } catch (Exception e) {
-            log.error("查询签到明细失败");
+            log.error("查询签到明细失败{}",e.getStackTrace());
         }
         return signs;
     }
@@ -126,6 +127,21 @@ public class SignServiceImpl implements SignService{
 
         try {
             signs = signExtMapper.selectSignDetailBysId(sId);
+        } catch (Exception e) {
+            log.error("查询签到明细失败");
+        }
+        return signs;
+    }
+
+    @Override
+    public List<Sign> selectSignDetailBytId(Long tId) {
+        if (StringUtils.isEmpty(tId)) {
+            return new ArrayList<>();
+        }
+        List<Sign> signs = new ArrayList<>();
+
+        try {
+            signs = signExtMapper.selectSignDetailBytId(tId);
         } catch (Exception e) {
             log.error("查询签到明细失败");
         }
@@ -157,6 +173,21 @@ public class SignServiceImpl implements SignService{
 //            studentInfo.setsSex(r.getCell(4).getStringValue());
 //        }
         return null;
+    }
+
+    @Override
+    public PageResult<Sign> selectSignDetailBytCondition(Long tId, String course, Long sClass, Integer SignNo, Integer current) {
+
+
+        List<Sign> signList = signExtMapper.selectSignDetailBytCondition((current - 1) * PageResult.pageSize, PageResult.pageSize,tId,course,sClass,SignNo);
+        Integer totalSize= signExtMapper.selectCountSignDetailBytCondition(tId,course,sClass,SignNo);
+
+        if (totalSize==null){
+            totalSize=0;
+        }
+
+        return PageResult.Create(signList, current, totalSize/PageResult.pageSize+1);
+
     }
 
 
