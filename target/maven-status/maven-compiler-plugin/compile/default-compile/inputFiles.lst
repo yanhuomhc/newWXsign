@@ -1,3 +1,4 @@
+/Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/utils/PageResult.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/mapper/TeacherSignRecordMapper.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/mapper/UserMapper.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/model/User.java
@@ -7,6 +8,7 @@
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/controller/StudentInfoController.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/service/impl/CourseServiceImpl.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/service/UserService.java
+/Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/VO/SignVO.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/controller/ExcelController.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/service/impl/UserServiceImpl.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/jpa/DruidConfiguration.java
@@ -40,3 +42,4 @@
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/DTO/TeacherDTO.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/service/TeacherSignRecordService.java
 /Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/mapper/ext/CourseExtMapper.java
+/Users/user12/Documents/git/newWXsign/src/main/java/com/yanhuo/sign/dal/VO/SignResultVO.java
