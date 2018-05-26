@@ -100,7 +100,7 @@ public class CourseController {
         course.settId(user.getuId());
         courseService.insertCourse(course);
 
-        return "redirect:/teacherAdminCourseInfo";
+        return "redirect:/courseInfo";
     }
 
 

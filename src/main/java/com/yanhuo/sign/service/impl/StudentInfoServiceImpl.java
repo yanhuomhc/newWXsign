@@ -28,7 +28,11 @@ public class StudentInfoServiceImpl implements StudentInfoService{
     @Override
     public PageResult<StudentInfo> selectAllStudentByPage(Long tId, Integer page, Integer limit) {
 
-        List<StudentInfo> courses= studentInfoExtMapper.selectAllBytIdAndPage((page-1)*limit+1,limit);
+        if (page==null){
+            page=1;
+        }
+
+        List<StudentInfo> courses= studentInfoExtMapper.selectAllBytIdAndPage((page-1)*limit,limit);
         PageResult pageResult=new PageResult();
         pageResult.setSuccess(Boolean.TRUE);
         pageResult.setCode(0);

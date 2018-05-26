@@ -60,7 +60,11 @@ public class CourseServiceImpl implements CourseService{
     @Override
     public PageResult<Course> selectAllCourseByPage(Long tId,Integer page,Integer limit) {
 
-        List<Course> courses= courseMapper.selectAllBytIdAndPage(tId,(page-1)*limit+1,limit);
+        if (page==null){
+            page=1;
+        }
+
+        List<Course> courses= courseMapper.selectAllBytIdAndPage(tId,(page-1)*limit,limit);
         PageResult pageResult=new PageResult();
         pageResult.setSuccess(Boolean.TRUE);
         pageResult.setCode(0);
