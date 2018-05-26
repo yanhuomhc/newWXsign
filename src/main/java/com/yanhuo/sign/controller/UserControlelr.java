@@ -1,5 +1,6 @@
 package com.yanhuo.sign.controller;
 
+import com.yanhuo.sign.dal.mapper.ext.UserExtMapper;
 import com.yanhuo.sign.dal.model.User;
 import com.yanhuo.sign.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +23,8 @@ public class UserControlelr {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserExtMapper userExtMapper;
 
 
     @RequestMapping("toLogin")
@@ -105,5 +108,27 @@ public class UserControlelr {
     @RequestMapping(value = "/sign",method = RequestMethod.GET)
     public String sign(){
         return "teacherSign";
+    }
+
+
+    @RequestMapping(value = "/user/userChangePwd")
+    public String userChangePwd(String pwd, String newPwd, String newRePwd, HttpSession session){
+        User user=(User)session.getAttribute("user");
+        if (user==null){
+            return "redirect:/index";
+        }
+
+        if (!newPwd.equals(newRePwd)){
+            return "redirect:/toTeacherInfo";
+        }
+
+      User teacher  =userExtMapper.selectByPrimaryKey(user.getuId());
+
+        teacher.setuPwd(newPwd);
+        userExtMapper.updateByPrimaryKey(teacher);
+
+
+        return "admin/pwdsuccess";
+
     }
 }

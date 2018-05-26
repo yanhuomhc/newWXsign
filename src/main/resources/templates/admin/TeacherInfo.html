@@ -26,7 +26,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">注销</a></li>
+                <li><a href="toTeacherInfo">修改密码</a></li>
                 <li><a th:href="@{loginOut}" th:unless="${session.user == null}">退出登录</a></li>
             </ul>
             <form class="navbar-form navbar-right">
@@ -35,6 +35,58 @@
         </div>
     </div>
 </nav>
+<div class="container">
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+
+
+    <div class="row">
+        <div class="col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <li><a href="/toTeacherAdmin">开始点到</a></li>
+                <li><a href="/selectSignDetail">签到明细查询</a></li>
+                <li class="active"><a href="/signResultAccount">签到结果汇总统计 <span class="sr-only">(current)</span></a></li>
+                <li><a href="/courseInfo">课程管理</a></li>
+                <li><a href="/toExcel">学生信息导入</a></li>
+            </ul>
+
+        </div>
+
+
+        <div class="col-md-10 main">
+            <form class="form-signin" id="sign" method="post" action="/user/userChangePwd">
+                <h2 class="form-signin-heading">密码修改</h2>
+                请输入原密码：<input name="pwd" id="pwd" class="form-control"/><br/>
+                请输入新密码:<input  name="newPwd" id="newPwd" class="form-control"/><br/>
+                再次输入新密码：<input  name="newRePwd" id="newRePwd" class="form-control" onblur="valid()"/><br/>
+                <script>
+                    /* <![CDATA[ */
+                    function valid() {
+                        if ($.trim($("#newPwd").val())!=$.trim($("#newRePwd").val())&&$.trim($("#newPwd").val())!=null&&$.trim($("#newRePwd").val())!=null){
+                            $("#btn").attr("type","hidden");
+
+                            alert("两次新密码不一致,请重新输入");
+                        }else{
+
+                            $("#btn").attr("type","submit");
+                        }
+                    }
+                    /* ]]> */
+
+                </script>
+
+
+                <input id="btn" value="提交" type="hidden"  class="btn btn-lg btn-primary btn-block"/>
+            </form>
+
+
+
+        </div>
+    </div>
+
+        </div>
 
 
 <!-- Bootstrap core JavaScript

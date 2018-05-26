@@ -78,7 +78,7 @@ public class WeixinController {
                 StudentInfo studentInfo = studentInfoExtMapper.selectBySno(user.getsNo());
                 TeacherSignRecord teacherSignRecord = teacherSignRecordExtMapper.selectBytId(tId);
                 //更新签到状态
-                signExtMapper.updateSignStatus(studentInfo.getsId().longValue(), teacherSignRecord.getSignRecordNo(), tId, new Date());
+                signExtMapper.updateSignStatus(studentInfo.getsId().longValue(), teacherSignRecord.getSignRecordNo()-1, tId, new Date());
             }
             //成功提示页面
             return "redirect:/weixin/Success";
