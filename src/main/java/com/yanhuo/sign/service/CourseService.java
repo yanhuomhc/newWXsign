@@ -1,6 +1,7 @@
 package com.yanhuo.sign.service;
 
 import com.yanhuo.sign.dal.model.Course;
+import com.yanhuo.sign.utils.PageResult;
 
 import java.util.List;
 
@@ -26,4 +27,13 @@ public interface CourseService {
      * @return
      */
     int insertCourse(Course course);
+
+    /**
+     * 查询课程 带分页
+     * @param tId
+     * @param page
+     * @param limit
+     * @return
+     */
+    PageResult<Course> selectAllCourseByPage(Long tId,Integer page,Integer limit);
 }

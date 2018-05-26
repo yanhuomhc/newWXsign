@@ -56,4 +56,9 @@
     select c_id, c_name, t_id
     from course
   </select>
+
+
+
+
+
 </mapper>

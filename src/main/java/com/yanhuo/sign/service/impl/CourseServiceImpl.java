@@ -4,6 +4,7 @@ import com.yanhuo.sign.dal.mapper.CourseMapper;
 import com.yanhuo.sign.dal.mapper.ext.CourseExtMapper;
 import com.yanhuo.sign.dal.model.Course;
 import com.yanhuo.sign.service.CourseService;
+import com.yanhuo.sign.utils.PageResult;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -54,5 +55,20 @@ public class CourseServiceImpl implements CourseService{
             return 0;
         }
         return c;
+    }
+
+    @Override
+    public PageResult<Course> selectAllCourseByPage(Long tId,Integer page,Integer limit) {
+
+        List<Course> courses= courseMapper.selectAllBytIdAndPage(tId,(page-1)*limit+1,limit);
+        PageResult pageResult=new PageResult();
+        pageResult.setSuccess(Boolean.TRUE);
+        pageResult.setCode(0);
+        pageResult.setData(courses);
+        Integer count= courseMapper.selectCoutBytIdAndPage(tId);
+        pageResult.setCount(count);
+
+        return pageResult;
+
     }
 }

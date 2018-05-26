@@ -25,8 +25,6 @@ public class ExcelController {
     @Autowired
     private StudentInfoExtMapper studentInfoExtMapper;
 
-    private String filePath;
-    private List list = new ArrayList();
 
     public ExcelController() {
     }
@@ -44,8 +42,8 @@ public class ExcelController {
      * @return
      */
     @RequestMapping("/UploadExcel")
-    @ResponseBody
     public String handleFileUpload(@RequestParam("file") MultipartFile file) {
+         List list = new ArrayList(); //用来临时存储表数据的list
 
         if (!file.isEmpty()) {
             try {
@@ -104,7 +102,7 @@ public class ExcelController {
                 return "upLoad false," + e.getMessage();
             }
 
-            return "upLoad success";
+            return "redirect:/toExcel";
         } else {
             return "upLoad false,cause of the file has nothing.";
         }

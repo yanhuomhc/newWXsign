@@ -6,13 +6,13 @@ import com.yanhuo.sign.dal.model.Sign;
 import com.yanhuo.sign.dal.model.StudentInfo;
 import com.yanhuo.sign.dal.model.User;
 import com.yanhuo.sign.service.SignService;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.mail.internet.MimeMessage;
@@ -68,7 +68,7 @@ public class MailController {
 
     @GetMapping("/sendEmail")
     @ResponseBody
-    public Integer sendEmail(@Param("SignNo") Integer SignNo, HttpSession session) {
+    public Integer sendEmail(@RequestParam("SignNo") Integer SignNo, HttpSession session) {
 
 
         User user = (User) session.getAttribute("user");

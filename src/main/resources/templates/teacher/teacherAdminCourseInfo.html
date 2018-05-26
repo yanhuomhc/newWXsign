@@ -8,7 +8,11 @@
 
     <!-- Bootstrap core CSS -->
     <link href="../../static/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet"/>
+    <script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
 
+    <script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+    <link rel="stylesheet"  th:href="@{/layui/css/layui.css}"/>
+    <script th:src="@{/layui/layui.js}"></script>
 
 </head>
 
@@ -67,10 +71,10 @@
 
                 <table id="demo" lay-filter="test"></table>
 
-                <form action="" method="post" th:action="@{/product/AddProductType}">
+                <form action="" method="post" th:action="@{/addCourse}">
                     <div class="row">
                         <div class="col-xs-2">要增加的课程名</div>
-                        <div class="col-xs-3"><input name="categoryName" class="form-control" /></div>
+                        <div class="col-xs-3"><input name="cname" class="form-control" /></div>
                         <div class="col-xs-2"><button  type="submit" class="btn btn-info">提交</button></div>
                     </div>
 
@@ -86,13 +90,12 @@
                         table.render({
                             elem: '#demo',
                             width: 600
-                            , url: '/product/queryProductTypeBypage' //数据接口
+                            , url: '/getCourseByPage' //数据接口
                             , page: true //开启分页
                             , cols: [[ //表头
-                                {field: 'categoryId', title: 'ID', width: 200, sort: true, fixed: 'left'}
-                                , {field: 'categoryName', title: '类型名', width: 200,event: 'setCategoryName', style:'cursor: pointer;'}
-                                , {field: 'categoryType', title: '编号', width: 200, sort: true}
-                                , {fixed: 'right', width: 150, align: 'center', toolbar: '#barDemo'}
+                                {field: 'cId', title: '课程ID', width: 200, sort: true, fixed: 'left'}
+                                , {field: 'cName', title: '课程名称', width: 200,event: 'setName', style:'cursor: pointer;'}
+                                , {fixed: 'right', width: 200, align: 'center', toolbar: '#barDemo'}
 
                             ]]
                         });
@@ -117,7 +120,7 @@
 
                                     // alert(data.categoryId);
                                     $.ajax({
-                                        url: "/product/DelProductType?categoryId=" + data.categoryId,
+                                        url: "/delCourse?cId=" + data.cId,
                                         type: "get",
                                         success: function (data) {
                                             if (data == 1) {
@@ -136,17 +139,17 @@
                                     username: '123'
                                     , title: 'xxx'
                                 });
-                            }else if (layEvent==="setCategoryName"){
+                            }else if (layEvent==="setName"){
                                 layer.prompt({
                                     formType: 2
-                                    ,title: '修改 ID 为 ['+ data.categoryId +'] 的菜品名字'
-                                    ,value: data.categoryName
+                                    ,title: '修改 ID 为 ['+ data.cId +'] 的课程名字'
+                                    ,value: data.cName
                                 }, function(value, index){
                                     layer.close(index);
 
                                     //这里一般是发送修改的Ajax请求
                                     $.ajax({
-                                        url: "/product/UpdateProductType?categoryId=" + data.categoryId+"&categoryName="+value,
+                                        url: "/UpdateCourse?cName="+value+"&cId="+data.cId,
                                         type: "get",
                                         success: function (data) {
                                             if (data == 1) {
@@ -159,7 +162,7 @@
 
                                     //同步更新表格和缓存对应的值
                                     obj.update({
-                                        categoryName: value
+                                        cName: value
                                     });
 
                                 })
@@ -187,9 +190,6 @@
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
-<script src="../../static/js/jquery.min.js" th:src="@{/js/jquery.min.js}"></script>
-
-<script src="../../static/js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
 
 </body>
 </html>
