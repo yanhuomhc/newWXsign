@@ -36,7 +36,7 @@
 
     <select id="selectAllTeachers" resultMap="BaseResultMap">
         SELECT u_id,u_name,u_sex,u_institute,u_power,u_email
-        FROM USER
+        FROM USER where  u_power=2
     </select>
 
     <select id="selectTeacher" resultMap="BaseResultMap" parameterType="java.lang.Long">

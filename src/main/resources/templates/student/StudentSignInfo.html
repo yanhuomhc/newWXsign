@@ -26,7 +26,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="toTeacherInfo">修改密码</a></li>
+                <!--<li><a href="toTeacherInfo">修改密码</a></li>-->
                 <li><a th:href="@{loginOut}" th:unless="${session.user == null}">退出登录</a></li>
             </ul>
             <form class="navbar-form navbar-right">
@@ -35,7 +35,46 @@
         </div>
     </div>
 </nav>
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="table-responsive">
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>姓名</th>
+                    <th>开始签到时间</th>
+                    <th>课程</th>
+                    <th>地点</th>
+                    <th>是否签到</th>
+                    <th>签到时间</th>
+                    <th>教师名称</th>
+                    <th>点到场次</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr  th:each="signVO,signVOStat : ${signVOS}">
+                    <td th:text="${signVO.sName}">Onions</td>
+                    <td th:text="${signVO.beginSignTime}">test@test.com.cn</td>
+                    <td th:text="${signVO.cName}">yes</td>
+                    <td th:text="${signVO.cLocation}">yes</td>
+                    <td th:text="${signVO.isSign}">yes</td>
+                    <td th:text="${signVO.signTime}">yes</td>
+                    <td th:text="${signVO.tName}">yes</td>
+                    <td th:text="${signVO.signNum}">yes</td>
 
+                </tr>
+                </tbody>
+            </table>
+
+
+
+    </div>
+</div>
+</div>
 
 <!-- Bootstrap core JavaScript
 ================================================== -->

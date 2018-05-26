@@ -4,6 +4,7 @@ import com.yanhuo.sign.dal.mapper.UserMapper;
 import com.yanhuo.sign.dal.mapper.ext.UserExtMapper;
 import com.yanhuo.sign.dal.model.User;
 import com.yanhuo.sign.enums.AuditEnum;
+import com.yanhuo.sign.enums.PowerEnum;
 import com.yanhuo.sign.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,17 +52,13 @@ public class UserServiceImpl implements UserService {
             log.error("参数错误");
             return 0;
         }
-        int uPower = 3;
-        if (user.getuPower() == uPower) {
-            log.error("管理员不能进行注册！");
-            return 0;
-        }
+        user.setuPower(PowerEnum.TEACHER.getCode());
         int u = userMapper.insert(user);
         if (u < 0) {
             log.error("注册失败");
             return 0;
         }
-        AuditEnum.TO_AUDIT.getCode();
+
         return u;
 
     }
